@@ -2,7 +2,7 @@
 // A project by Pauline Hocher, Jonas Herrmann, Marcel Karas, Simeon Schwarzkopf & Alexander Zank
 // Copyright (C) 2018 Alexander Zank
 // Available under the MIT License, see README.md
-// Last update on 04.12.2018
+// Last update on 05.12.2018
 
 // MARK: - Dependencies
 
