@@ -6,6 +6,7 @@
 
 // MARK: - Dependencies
 
+#include <PS2Mouse.h>
 #include <Adafruit_MotorShield.h>
 #include <Servo.h>
 
@@ -15,13 +16,16 @@
 #define stepperDataPin 1    // Equivalent to M1 & M2 on the motorshield
 #define stepperSteps 200    // 360° total / 1,8° per step = 200 steps per revolution
 #define stepperRPM 20       // Desired # of rotations per minute
+#define mouseDataPin 1      // The mouse's PS/2 conforming data pin on Arduino (no PWM needed)
+#define mouseClockPin 2     // The mouse's PS/2 conforming clock pin on Arduino (no PWM needed)
 
 
 // MARK: - Global properties
 
 Adafruit_MotorShield motorshield = Adafruit_MotorShield();                                          // The motorshield object, initialized at the beginning
 Adafruit_StepperMotor *positionStepper = motorshield.getStepper(stepperSteps, stepperDataPin);      // The stepper motor reference, retreived from the motorshield by defining the step # and data pin
-Servo magazineServo = Servo();                                                                      // The servo object, initialized at the beginning
+Servo magazineServo = Servo();   
+PS2Mouse mouse = PS2Mouse()                                                                   // The servo object, initialized at the beginning
 
 
 // MARK: - Main lifecycle
@@ -34,10 +38,16 @@ void setup() {
     magazineServo.attach(servoDataPin);
     // Configure positionStepper speed
     positionStepper->setSpeed(stepperRPM);
+    // Initialize mouse
+    mouse.initialize();
 }
 
 void loop() {
-    // TODO
+    // DEBUG
+    MouseData mouseData = mouse.readData();
+    Serial.println(mouseData.position.x);
+    Serial.println(mouseData.position.y)
+    delay(20);
 }
 
 void serialEvent() {
