@@ -18,10 +18,10 @@
 // Magazine Servo Definitions
 #define servoDataPin 10         // Using the outer 3-pin connector on the motorshield
 // Position Stepper Definitions
-#define stepperDataPin 1        // Equivalent to M1 & M2 on the motorshield
+#define stepperDataPin 2        // Equivalent to M3 & M4 on the motorshield
 #define stepperSteps 200        // 360° total / 1,8° per step = 200 steps per revolution
 #define stepperRPM 200          // Desired # of rotations per minute
-#define stepperSPC 1            // Measured steps per column TODO!!!!
+#define stepperSPC 230          // Measured steps per column TODO!!!!
 // Game Structure Definitions
 #define columns 7               // The game's column number (absolute, > 0)
 #define rows 6                  // The game's row number (absolute, > 0)
@@ -84,7 +84,7 @@ void setup() {
     motorshield.begin();
     // Configure magazineServo and set to center position
     magazineServo.attach(servoDataPin);
-    magazineServo.write(90);
+    magazineServo.write(70);
     // Configure positionStepper speed
     positionStepper->setSpeed(stepperRPM);
     // Configure LED pin modes
@@ -194,13 +194,13 @@ void moveToX(byte x) {
 /// Returns: *Nothing*
 void dispenseAndReloadMagazine() {
     // Dispense chip
-    magazineServo.write(180);
+    magazineServo.write(170);
     delay(1000);
     // Reload magazine
-    magazineServo.write(60);
+    magazineServo.write(40);
     delay(1000);
     // Reset to center position
-    magazineServo.write(90);
+    magazineServo.write(70);
 }
 
 
@@ -213,7 +213,7 @@ byte randomX() {
     // Variable storing a random column
     byte randomX;
     // Populate with a random x-coordinate and repeat the process as long as no free column is found
-    do { randomX = random(0, maxX + 1); } while (gameMap[0][randomX] != U);
+    do { randomX = random(0, (maxX + 1)); } while (gameMap[0][randomX] != U);
     // Return the found value
     return randomX;
 }
