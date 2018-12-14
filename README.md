@@ -1,7 +1,7 @@
 # Tic-Tac-Toe
 #### A project by Pauline Hocher, Jonas Herrmann, Marcel Karas, Simeon Schwarzkopf and Alexander Zank realized at Hohenstaufen-Gymnasium Bad Wimpfen during December 2018.
 
-## Introduduction
+## Introduction
 The goal of project Mega-Tic-Tac-Toe is the implementation of a mechanical player for a bigger sized "Connect 4" board. Programatically this is achieved by using an Arduino Genuino Uno and the code contained in this repository.
 
 ## Construction outline
@@ -10,7 +10,7 @@ A stepper motor-powered hinge allows the tile magazine to be moved around freely
 ![Construction Outline](https://raw.githubusercontent.com/AlexLike/NWT-Mega-Tic-Tac-Toe/Documentation-Assets/Construction%20Overview.jpeg?token=AdDgy6LOyk1BvnHT4aixvDwxQrZ3rKcsks5cHRMuwA%3D%3D)
 
 ## Wiring outline
-TODO
+Adafruit's Motorshield V2 is stacked on the Arduino Genuino Uno and connected with an array of 4 AA-batteries that will later power the two motors when connected correctly. Every LED receives an own data pin and a shared connection to the Arduino's GND. The Arduino-to-Computer serial connection is realized via an USB Type B to A cable that connects the two to each other thereby occupying pin 0 and 1 on the board.
 
 ## Coding principles
 TODO
