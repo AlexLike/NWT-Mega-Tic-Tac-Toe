@@ -2,10 +2,12 @@
 #### A project by Pauline Hocher, Jonas Herrmann, Marcel Karas, Simeon Schwarzkopf and Alexander Zank realized at Hohenstaufen-Gymnasium Bad Wimpfen during December 2018.
 
 ## Introduduction
-The goal of project Tic-Tac-Toe is the implementation of a mechanical player for a bigger sized board. Programatically this is achieved by using an Arduino Genuino Uno and the code contained in this repository.
+The goal of project Mega-Tic-Tac-Toe is the implementation of a mechanical player for a bigger sized "Connect 4" board. Programatically this is achieved by using an Arduino Genuino Uno and the code contained in this repository.
 
 ## Construction outline
-TODO
+A stepper motor-powered hinge allows the tile magazine to be moved around freely on top of the "Connect-4" board while the magazine's opening and reloading mechanism is realized by using a small servo. An LED strip on the bottom has been added for aesthetical reasons.
+
+![Construction Outline](https://raw.githubusercontent.com/AlexLike/NWT-Mega-Tic-Tac-Toe/Documentation-Assets/Construction%20Overview.jpeg?token=AdDgy6LOyk1BvnHT4aixvDwxQrZ3rKcsks5cHRMuwA%3D%3D)
 
 ## Wiring outline
 TODO
