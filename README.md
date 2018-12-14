@@ -1,8 +1,9 @@
 # Tic-Tac-Toe
-#### A project by Pauline Hocher, Jonas Herrmann, Marcel Karas, Simeon Schwarzkopf and Alexander Zank realized at Hohenstaufen-Gymnasium Bad Wimpfen during December 2018.
+#### An educational project by Pauline Hocher, Jonas Herrmann, Marcel Karas, Simeon Schwarzkopf and Alexander Zank realized at Hohenstaufen-Gymnasium Bad Wimpfen during December 2018.
 
 ## Introduction
 The goal of project Mega-Tic-Tac-Toe is the implementation of a mechanical player for a bigger sized "Connect 4" board. Programatically this is achieved by using an Arduino Genuino Uno and the code contained in this repository.
+The human player is able to choose his desired column by typing it out using a keyboard while the COM player plays random moves and constantly checks whether one of the two has won.
 
 ## Construction outline
 A stepper motor-powered hinge allows the tile magazine to be moved around freely on top of the "Connect-4" board while the magazine's opening and reloading mechanism is realized by using a small servo. An LED strip on the bottom has been added for aesthetical reasons.
@@ -33,7 +34,33 @@ When declaring variables, data types are also used sparingly which means that fo
 
 A greatly sophisticated subroutine is the `didWin(byte EID)` method. It scans each row, column and diagonal for a possible winning line by using `gameMap`'s data in `for`-loops and the provided entitie's ID defined at the beginning. This can either be P for Player or C for COM. The following diagram explains the scans `didWin(byte EID)` performs while running:
 
+![didWin Algorithm diagram](https://raw.githubusercontent.com/AlexLike/NWT-Mega-Tic-Tac-Toe/Documentation-Assets/didWin%20Algorithm.png?token=AdDgyx1xMUKXRfD_FFSt0q-ERdUGexQjks5cHW3TwA%3D%3D)
 
+Note that the function uses two encapsulated `for`-loops. The root one is marked blue in the diagram, the subloop is marked orange in the diagram. It allows the Arduino to orderly scan through `gameMap` and keep track of a winning streak in the local scope variable `currentStreak`. In the codesnippet given below, the first `for`-loop compared y to 255, that's because a `>= 0` comparison with byte data types is buggy and might result in infinite loops. An excluding comparison to 255 is useful because a byte value is unsigned and would jump to 255 if the zero is passed negatively.
+```C++
+// Counter for directly neighboring tiles
+byte currentStreak;
+// Check winning rows, from bottom to top
+Serial.print("Scanning rows, ");
+for (byte y = maxY; y < 255; y--) {
+  // Reset streak for each row
+  currentStreak = 0;
+  // Read from left to right
+  for (byte x = 0; x <= maxX; x++) {
+    // Player owns the field -> Increment currentStreak by 1
+    if (gameMap[y][x] == EID) { currentStreak++; }
+    // Player doesn't own the field -> Reset currentStreak to 0
+    else { currentStreak = 0; }
+    // Check currentStreak status and return true if won
+    if (currentStreak == winningStreak) { return true; }
+    // Stop checking this row if no win is possible with the remaining columns
+    if (x + (winningStreak - currentStreak) > maxX) { break; }
+  }
+}
+```
+
+### Known bugs
+Due to memory leakage in the Arduino's core firmware, the integer `5` might not be interpreted correctly when read from Serial. This issue might be resolved within a new firmware update but is momentarily unfixable.
 
 ## License
 
