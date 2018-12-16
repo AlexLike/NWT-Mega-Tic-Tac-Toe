@@ -13,6 +13,9 @@ A stepper motor-powered hinge allows the tile magazine to be moved around freely
 ## Wiring outline
 Adafruit's Motorshield V2 is stacked on the Arduino Genuino Uno and connected with an array of 4 AA-batteries that will later power the two motors when connected correctly. Every LED receives an own data pin and a shared connection to the Arduino's GND. The Arduino-to-Computer serial connection is realized via an USB Type B to A cable that connects the two to each other thereby occupying pin 0 and 1 on the board.
 
+## Control Flow Diagram
+![Control Flow Diagram](https://raw.githubusercontent.com/AlexLike/NWT-Mega-Tic-Tac-Toe/Documentation-Assets/Control%20Flow%20Diagram.png)
+
 ## Coding principles
 This project's code was written in native C++ with the Arduino's base and servo libraries as well as Adafruit's motorshield library V2 stacked on top. A key design decision was emphasizing the modularity and clarity of the code and keeping it as lightweight as possible so that the Arduino's dynamic storage can be used to its fullest potential.
 
